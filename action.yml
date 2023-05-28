@@ -1,0 +1,33 @@
+# action.yml
+name: "thereisnotime/action-nikto"
+description: "Run nikto in your GitHub Actions workflow"
+
+inputs:
+  url:
+    description: "Target URL (e.g. http://www.blackfox-security.com/)"
+    required: true
+    default: ""
+  additional_args:
+    description: "Additional arguments to pass to nikto."
+    required: false
+    default: ""
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - |
+      args="--url=${{ inputs.url }}"
+      additional_args="${{ inputs.additional_args }}"
+      set -- $additional_args
+      for arg do
+        args="$args $arg"
+      done
+      echo $args
+      exec /usr/bin/perl /nikto/program/nikto.pl $args
+
+branding:
+  icon: "maximize"
+  color: "red"

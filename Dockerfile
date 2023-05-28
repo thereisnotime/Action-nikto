@@ -1,0 +1,1 @@
+FROM theorigamicorporation/nikto:2.5.0
