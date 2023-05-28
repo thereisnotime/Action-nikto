@@ -31,7 +31,7 @@ jobs:
         uses: thereisnotime/action-nikto@master
         with:
           url: "https://blackfox-security.com"
-          additional_args: "--batch --crawl=2 --random-agent --forms --level=5 --risk=3"
+          additional_args: "-ssl"
 ```
 
 ### Use latest version in a job
@@ -45,7 +45,7 @@ scan_nikto:
       uses: thereisnotime/action-nikto@master
       with:
         url: "https://blackfox-security.com"
-        additional_args: "--batch --crawl=2 --random-agent --forms --level=5 --risk=3"
+        additional_args: "-ssl"
 ```
 
 ### Use latest version in a job and upload the results back to the repository
@@ -67,7 +67,7 @@ scan_nikto:
       uses: thereisnotime/action-nikto@master
       with:
         url: ${{ env.TARGET }}
-        additional_args: "--batch --crawl=2 --random-agent --forms --level=5 --risk=3"
+        additional_args: "-ssl"
     - name: Commit and push changes
       uses: EndBug/add-and-commit@v9
       with:
